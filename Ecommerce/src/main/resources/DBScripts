@@ -1,0 +1,26 @@
+
+use ecommerce;
+-- User table
+CREATE TABLE User (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL UNIQUE
+);
+
+-- Item table
+CREATE TABLE Item (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    total_qty INT NOT NULL,
+    available_qty INT NOT NULL
+);
+
+-- Reservation table
+CREATE TABLE Reservation (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    item_id BIGINT,
+    user_id BIGINT,
+    qty INT NOT NULL,
+    reserved_at DATETIME NOT NULL,
+    FOREIGN KEY (item_id) REFERENCES Item(id),
+    FOREIGN KEY (user_id) REFERENCES User(id)
+);
